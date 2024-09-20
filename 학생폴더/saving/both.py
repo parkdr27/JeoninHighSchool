@@ -1,6 +1,7 @@
 import tkinter
 import time
 
+lidar_data = ((0,), (0,))
 sensor_data = (0, 0, 0, 0, 0)
 rplidar = None
 ser = None
