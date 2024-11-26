@@ -1,5 +1,6 @@
 import tkinter
 import time
+import threading
 
 lidar_data = ((0,), (0,))
 sensor_data = (0, 0, 0, 0, 0)
@@ -22,6 +23,8 @@ class worker:
             print(settime)            
             requst=1
             return(1)
+        time.sleep(4)
+        test.show_frame9(self)
 
 class test(tkinter.Tk):
     global tomsky
@@ -160,13 +163,13 @@ class test(tkinter.Tk):
     def create_frame5(self):  # 서빙
         label = tkinter.Label(self.frame5, text="서빙 로봇을 보낼 테이블을 고르세요", width=30,
                               height=2, fg="red", relief="solid", font=("Helvetica", 25))
-        button1 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(1), self.show_frame7()),
+        button1 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(1), self.chage_other()),
                                  text="1번 테이블", width=8, height=2, repeatdelay=1000, repeatinterval=100, font=("Helvetica", 25))
-        button2 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(2), self.show_frame7()),
+        button2 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(2), self.chage_other()),
                                  text="2번 테이블", width=8, height=2, repeatdelay=1000, repeatinterval=100, font=("Helvetica", 25))
-        button3 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(3), self.show_frame7()),
+        button3 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(3), self.chage_other()),
                                  text="3번 테이블", width=8, height=2, repeatdelay=1000, repeatinterval=100, font=("Helvetica", 25))
-        button4 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(4), self.show_frame7()),
+        button4 = tkinter.Button(self.frame5, overrelief="solid", background="blue", foreground="white", command=lambda: (self.chomun(4), self.chage_other()),
                                  text="4번 테이블", width=8, height=2, repeatdelay=1000, repeatinterval=100, font=("Helvetica", 25))
         back = tkinter.Button(self.frame5, overrelief="solid",
                               text="돌아가기", command=self.show_frame1)
@@ -374,8 +377,9 @@ class test(tkinter.Tk):
         self.frame7.pack(fill=tkinter.BOTH, expand=True)  # 여섯 번째 창 표시\
         self.frame10.pack_forget()
         self.frame12.pack_forget()
+        
         a=worker().get()
-        print("nein")
+        
         
 
     def show_frame8(self):
@@ -552,8 +556,17 @@ class test(tkinter.Tk):
             self.li4 = self.li
         self.save()
 
+    def chage_other(self):
+        threading.Thread(target=self.show_frame7()).start()
 
+class suub:
+    def working_subing():
+        print("성공")
 
+    def gohome():
+        global v
+        v=1
+        return(v)
 
 if __name__ == "__main__":
     app = test()
