@@ -735,12 +735,12 @@ class test(tkinter.Tk):
 
 if __name__ == "__main__":
     
-    print("run main2")
+    print("run nu1")
     a = threading.Thread(target=main, args=(5, 10))
     sensor_port = 'COM7'  # 실제 확인 필요
     ser = serial.Serial(sensor_port, 9600, timeout=1)
 
-    print("start")
+    print("run nu2")
     
     a.start()
     app = test()
